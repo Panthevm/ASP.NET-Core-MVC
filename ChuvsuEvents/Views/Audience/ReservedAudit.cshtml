@@ -1,0 +1,60 @@
+﻿@model ChuvsuEvents.ViewModels.MyViewModelSearch
+<div class="modal-content">
+    <div class="modal-header text-center">
+        <h4 class="modal-title w-auto  font-weight-bold flex-center">Занять аудиторию</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form id="ReservAudit" asp-action="ReservedAudit" asp-controller="Audience" asp-route-id="@Model.EventsMod" class="text-center border-bottom border-light pr-1" enctype="multipart/form-data">
+        <div class="modal-body mx-3">
+            <div class="form-group mb-3">
+                <div class="md-form md-outline">
+                    <label>Название</label>
+                    <input asp-for="EventsMod.Title" type="text" id="titleEvent" class="form-control">
+                </div>
+                <div class="md-form md-outline">
+                    <textarea asp-for="EventsMod.Description" type="text" id="form75" class="form-control" rows="3"></textarea>
+                    <label for="form75">Описание</label>
+                </div>
+                <div class="md-form md-outline">
+                    <input asp-for="EventsMod.UrlImage" type="text" id="form75" class="form-control" rows="3">
+                    <label for="form75">Url изображения</label>
+                </div>
+                <div class="custom-control custom-checkbox ">
+                    <div class="row">
+                        <div class="col">
+                            <input asp-for="EventsMod.Publish" type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+                            <label class="custom-control-label" for="defaultRegisterFormNewsletter">Опубликовать</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="invisible collapse">
+                    <div class="col mb-3">
+                        <label>Корпус</label>
+                        <input asp-for="EventsMod.Building" value="@Model.SearchAuditMod.Building" type="text" id="BuildingEvent" class="form-control" placeholder="Корпус">
+                    </div>
+                    <div class="col mb-3">
+                        <label>Аудитория</label>
+                        <input asp-for="EventsMod.Numer" value="@Model.Location.Number" type="text" id="descriptionEvent" class="form-control" placeholder="Описание">
+                    </div>
+                    <div class="col mb-3">
+                        <label>Дата</label>
+                        <input asp-for="EventsMod.Date" value="@Model.SearchAuditMod.Data" type="text" id="descriptionEvent" class="form-control" placeholder="Описание">
+                    </div>
+                    <div class="col mb-3">
+                        <label>с</label>
+                        <input asp-for="EventsMod.min" value="@Model.SearchAuditMod.min" type="text" id="descriptionEvent" class="form-control" placeholder="Описание">
+                    </div>
+                    <div class="col mb-3">
+                        <label>по</label>
+                        <input asp-for="EventsMod.max" value="@Model.SearchAuditMod.max" type="text" id="descriptionEvent" class="form-control" placeholder="Описание">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-dark" value="Send">Занять</button>
+        </div>
+    </form>
+</div>

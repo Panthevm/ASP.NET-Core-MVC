@@ -1,0 +1,35 @@
+﻿@model ChuvsuEvents.ViewModels.EmploymentAudienceViewModel
+<div class="modal-content">
+    <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Редактор</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form id="changeModalForm" asp-action="Empedit" asp-controller="Audience" asp-route-id="@Model.Id" class="text-center border-bottom border-light pr-1">
+        <div class="modal-body mx-3">
+
+            <div class="form-row mb-3">
+                <div class="col-7 pb-3">
+                    <select class="browser-default custom-select" asp-for="Weekdays" asp-items="Html.GetEnumSelectList<ChuvsuEvents.ViewModels.Weekday>()"></select>
+                </div>
+
+                <div class="col-4 custom-checkbox pl-4 pt-2">
+                    <input asp-for="Chetnost" type="checkbox" class="custom-control-input" id="ChetnostChange">
+                    <label class="custom-control-label" for="ChetnostChange">Четная</label>
+                </div>
+
+                <div class="col-4">
+                    <input asp-for="Building" type="text" id="defaultBuildingtName1" class="form-control" placeholder="Корпус">
+                </div>
+                <div class="col">
+                    <input asp-for="Number" type="text" id="defaultNumbertName1" class="form-control" placeholder="Номер аудитории">
+                </div>
+            </div>
+            <input asp-for="PairNum" type="number" id="defaultRegisterFormLastName" class="form-control" placeholder="Номер пары">
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-dark" value="Send">Сохранить</button>
+        </div>
+    </form>
+</div>

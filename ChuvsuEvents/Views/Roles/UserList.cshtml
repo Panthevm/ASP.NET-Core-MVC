@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ChuvsuEvents.Models.User>
+    <style>
+        table.table a {
+            color: white;
+        }
+    </style>
+    <h2>Список пользователей</h2>
+    <div class="countainer">
+        <div class="row">
+            <div class="col-md-5">
+                <form asp-controller="UserList" asp-action="Index" class="form-inline mr-auto">
+                    <input class="form-control w-auto" type="text" placeholder="Поиск по почте" aria-label="Search" name="SearchString">
+                    <button class="btn btn-elegant btn-rounded btn-sm" type="submit" value="Filter">Поиск</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="countainer">
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Почта</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model) {
+                    <tr>
+                        <td>@user.Email<br>@user.UserFIO</td>
+                        <td>
+                            <a class="btn btn-dark mx-0 mb-0" asp-action="Edit" asp-route-userid="@user.Id">Права доступа</a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+</div>

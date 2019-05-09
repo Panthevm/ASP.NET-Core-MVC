@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@if (SignInManager.IsSignedIn(User)) {
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a asp-area="" asp-controller="Account" asp-action="Index" class="nav-link">@UserManager.GetUserName(User)</a>
+        </li>
+    </ul>
+ 
+}
+else {
+    <form asp-controller="Account" asp-action="Login" style="color: white" method="get">
+        <button type="submit" class="btn btn-success my-2 my-sm-0 text-dark">Войти</button>
+    </form>
+}

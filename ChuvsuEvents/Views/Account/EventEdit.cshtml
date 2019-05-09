@@ -1,0 +1,50 @@
+﻿@model ChuvsuEvents.ViewModels.EventsViewModel
+<div class="modal-content">
+    <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Редактор</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form id="changeModalForm" asp-action="EventEdit" asp-controller="Account" asp-route-id="@Model.Id" class="text-center border-bottom border-light pr-1">
+        <div class="modal-body mx-3">
+
+            <div class="form-row mb-3">
+                <div class="col">
+                    <input asp-for="Title" type="text" id="defaultBuildingtName1" class="form-control" placeholder="Название">
+                </div>
+                <div class="invisible collapse">
+                    <input asp-for="PersoneId" type="text">
+                    <input asp-for="Building" type="text">
+                    <input asp-for="Numer" type="text">
+                    <input asp-for="Date" type="date">
+                    <input asp-for="min" type="text">
+                    <input asp-for="max" type="text">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <textarea asp-for="Description" type="text" id="defaultNumbertName1" class="form-control" placeholder="Описание"></textarea>
+                </div>
+            </div>
+
+            <div class="form-row pt-3">
+                <div class="col">
+                    <input asp-for="UrlImage" type="text" id="form75" class="form-control" rows="3">
+                </div>
+            </div>
+
+            <div class="custom-control custom-checkbox pt-3">
+                <div class="row">
+                    <div class="col">
+                        <input asp-for="Publish" type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+                        <label class="custom-control-label" for="defaultRegisterFormNewsletter">Опубликовать</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-dark" value="Send">Сохранить</button>
+        </div>
+    </form>
+</div>

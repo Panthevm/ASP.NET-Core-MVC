@@ -1,0 +1,38 @@
+﻿@model ChuvsuEvents.Models.Audience
+<div class="modal-content">
+    <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Редактор</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form id="changeModalForm" asp-action="Edit" asp-controller="Audience" asp-route-id="@Model.Id" class="text-center border-bottom border-light pr-1">
+        <div class="modal-body mx-3">
+            <div class="form-row mb-4">
+                <div class="col-4">
+                    <input asp-for="Building" type="text" id="defaultBuildingtName1" class="form-control" placeholder="Корпус">
+                </div>
+                <div class="col">
+                    <input asp-for="Number" type="text" id="defaultNumbertName1" class="form-control" placeholder="Номер аудитории">
+                </div>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <div class="row">
+                    <div class="col">
+                        <input asp-for="Projector" type="checkbox" class="custom-control-input" id="AudienceChangeProjector">
+                        <label class="custom-control-label" for="AudienceChangeProjector">Проектор</label>
+                    </div>
+
+                    <div class="col">
+                        <input asp-for="Computer" type="checkbox" class="custom-control-input" id="AudienceChangeComputer">
+                        <label class="custom-control-label" for="AudienceChangeComputer">Компьютеры</label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-dark" value="Send">Сохранить</button>
+        </div>
+    </form>
+</div>

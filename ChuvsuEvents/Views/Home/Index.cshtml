@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ChuvsuEvents.ViewModels.OrganizationViewModel>
+@{
+    int i = 0;
+    string[] colors = { "success","secondary","primary","default","warning","info" };
+    ViewData["Title"] = "Главная страница";
+}
+
+<section class="text-center my-5">
+
+
+    <h2 class="h1-responsive font-weight-bold my-5">Организации</h2>
+
+    <p class="w-responsive mx-auto mb-5">
+        Узнавайте о всех новостях и ближайших событий вашего университета
+    </p>
+
+
+    <div class="row">
+        @foreach (var organization in Model) {
+            <div class="col-md-6 mb-3">
+                <div class="card card-image" style="background-image: url(@organization.UrlImage); background-size: cover;">
+                    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+                        <div>
+                            <h6 class="text-@colors[i]">
+                                <strong>@organization.Theme</strong>
+                            </h6>
+                            <h3 class="py-3 font-weight-bold">
+                                <strong>@organization.Name</strong>
+                            </h3>
+                            <p class="pb-3">
+                                @organization.Description
+                            </p>
+                            <a class="btn btn-@colors[i] btn-rounded btn-md text-dark" asp-controller="News" asp-action="Index" asp-route-organization="@organization.Name">Посмотреть</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            i++;
+        }
+
+    </div>
+
+
+</section>
+

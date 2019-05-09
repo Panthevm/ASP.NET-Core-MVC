@@ -1,0 +1,30 @@
+﻿@model ChuvsuEvents.ViewModels.EventDetailedModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+@{
+    ViewData["Title"] = Model.EventMod.Title;
+}
+<div class="col-sm border-left border-right ">
+    <p class="mb-4 pt-1 text-center">Список участников</p>
+    <p class="mb-4 pt-1 text-center">Всего участников: <strong>@Model.Participants.Count()</strong></p>
+    <table id="dtBasicExample" class="table table-striped table-sm table-hover results" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col">Дата подачи</th>
+                <th scope="col">ФИО</th>
+                <th scope="col">Название заявки</th>
+                <th scope="col">Комментарий</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Participants) {
+                <tr class="poster">
+                    <td class="p-2 pt-3">@item.SubDate.ToString("d")</td>
+                    <td class="p-2 pt-3">@UserManager.Users.Where(p=>p.Id.Contains(item.UserId)).First().UserFIO</td>
+                    <td class="p-2 pt-3">@item.Title </td>
+                    <td class="holder p-2">@item.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

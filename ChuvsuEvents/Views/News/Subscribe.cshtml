@@ -1,0 +1,24 @@
+﻿@model ChuvsuEvents.ViewModels.EventDetailedModel
+<div class="modal-content">
+    <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Заявка на участие</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form asp-action="Subscribe" asp-controller="News" class="text-center border-bottom border-light pr-1">
+        <div class="modal-body mx-3">
+            <div class="form-group">
+                <div class="col pb-3 ">
+                    <input asp-for="ParticipantMod.Title" type="text" id="defaultBuildingtName1" class="form-control" placeholder="Заголовок">
+                </div>
+                <div class="col">
+                    <textarea asp-for="ParticipantMod.Description" type="text" id="defaultNumbertName1" class="form-control" placeholder="Комментарий"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-dark" value="Send">Сохранить</button>
+        </div>
+    </form>
+</div>

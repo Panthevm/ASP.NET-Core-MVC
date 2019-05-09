@@ -1,0 +1,173 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+@model ChuvsuEvents.Models.User
+
+@{
+    ViewData["Title"] = "Личный кабинет";
+}
+
+<style>
+    a {
+        color: #212121;
+    }
+</style>
+<ul class="nav nav-pills justify-content-center grey lighten-4 py-0 rounded ">
+    <li class="nav-item">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+           aria-controls="v-pills-home" aria-selected="true">Моя страница</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Account" asp-action="MyRequest">Заявки</a>
+
+    </li>
+
+    @if (User.IsInRole("Модератор") || User.IsInRole("Администратор")) {
+        <li class="nav-item">
+            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+               aria-controls="v-pills-profile" aria-selected="false">Мои мероприятия</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false">Посты</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" asp-controller="News" asp-action="Create">Опубликовать новость</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" asp-controller="News" asp-action="NewsList">Мои посты</a>
+            </div>
+
+
+        </li>
+    }
+    @if (User.IsInRole("Администратор")) {
+
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Roles" asp-action="UserList">Управление ролями</a>
+
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Audience" asp-action="Index">Аудитории</a>
+
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Audience" asp-action="Employment">Занятость аудиторий</a>
+
+        </li>
+
+    }
+</ul>
+<div class="container">
+    <div class="row">
+        
+        <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <div class="card-group">
+                    <div class="card-body">
+                        <h4 class="card-title font-weight-bold"><a>@ViewBag.userFIO</a></h4>
+
+                        <ul class="list-unstyled list-inline rating mb-0">
+                            @if (User.IsInRole("Администратор")) {
+                                <li class="list-inline-item pb-2"><span class="badge badge-danger">Администратор</span></li>
+                            }
+                            else if (User.IsInRole("Модератор")) {
+                                <li class="list-inline-item pb-2"><span class="badge badge-success">Модератор</span></li>
+                            }
+                            else {
+                                <li class="list-inline-item"><p class="text-muted">Гость</p></li>
+                            }
+                        </ul>
+                        <p class="mb-2">Почта: @User.Identity.Name</p>
+                        <p class="mb-2">ФИО: @ViewBag.userFIO</p>
+                        @if (ViewBag.Organizations != null) {
+                            <p class="mb-2">Организация: @ViewBag.Organizations </p>
+                        }
+                        <hr class="my-4">
+                        <p class="lead"><strong>Редактировать</strong></p>
+
+                        <a class="btn btn-flat text-dark p-1 mx-0 mb-0" asp-action="ChangePassword">Пароль</a>
+                        <a class="btn btn-flat text-dark p-1 mx-0 mb-0" asp-action="Edit">ФИО</a>
+                        @if (ViewBag.Organizations == null && !User.IsInRole("Студент")) {
+                            <a class="btn btn-flat text-dark p-1 mx-0 mb-0" asp-action="SetOrganization">Указать организацию</a>
+                        }
+                        else if(!User.IsInRole("Студент")){
+                            <a class="btn btn-flat text-dark p-1 mx-0 mb-0" asp-action="EditOrganization">Организация</a>
+                        }
+                        <hr class="my-4">
+                        <form method="post" asp-controller="Account" asp-action="LogOff" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" id="logoutForm">
+                            <button type="submit" class="btn btn-dark mx-0 mb-0">Выйти</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+
+                <div class="container">
+                    <div class="row mt-3">
+
+                        @{ if (ViewBag.Audience != null) {
+                                @foreach (var even in ViewBag.Audience) {
+                                    <div class="col">
+                                        <div class="card-deck">
+                                            <div class="card mb-4">
+
+                                                <div class="card-body">
+                                                    <form asp-action="OnPostDeleteAsync" asp-route-id="@even.Id" method="post">
+                                                        <button type="submit" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </form>
+                                                    <h4 class="card-title">@even.Title</h4>
+                                                    <p class="card-text">
+                                                        <strong>Аудитория:</strong> @even.Building-@even.Numer<br />
+                                                        <strong>Время:</strong>
+                                                        @if (even.min != even.max) {
+                                                            <text>с @even.min по @even.max пару</text>
+                                                        }
+                                                        else {
+                                                            <text> @even.min парой</text>
+                                                        }
+                                                        <br /><strong>Дата</strong>: @even.Date.ToString("d")
+                                                    </p>
+                                                    <a class="compItem btn btn-dark px-2 py-1 m-0 mybutton btn-md" asp-action="EventEdit" asp-route-id="@even.Id">
+                                                        Редактировать
+                                                    </a>
+                                                    <a class="btn btn-dark px-2 py-1 m-0 mybutton btn-md" asp-controller="Account" asp-action="MyEventDetailed" asp-route-id="@even.Id">Участники</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else {
+                                <p class="mb-2">Вы ничего не занимали</p>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".compItem").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogContent').html(data);
+                    $('#modDialog').modal('show');
+                });
+            });
+        })
+    </script>
+}

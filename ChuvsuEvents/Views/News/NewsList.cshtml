@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ChuvsuEvents.ViewModels.NewsViewModel>
+<style>
+    table.table a {
+        color: white;
+    }
+</style>
+<h2>Список постов</h2>
+<div class="countainer">
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Заголовок</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var news in Model) {
+                    <tr>
+                        <td><strong>@news.Title</strong></td>
+                        <td>
+                            <a class="btn btn-dark mx-0 mb-0" asp-action="Edit" asp-controller="News" asp-route-id="@news.Id">Редактировать</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

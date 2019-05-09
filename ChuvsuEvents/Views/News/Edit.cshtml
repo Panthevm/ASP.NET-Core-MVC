@@ -1,0 +1,25 @@
+﻿@model ChuvsuEvents.ViewModels.NewsViewModel
+@{
+    ViewData["Title"] = "Редактивирование";
+}
+<h2 class="text-center my-5">Редактивирование поста</h2>
+<form asp-action="Edit" asp-controller="News" asp-route-id="@Model" class="text-center border-bottom border-light pr-1">
+    <div class="modal-body mx-3">
+        <div class="form-group mb-3">
+            <div class="md-form">
+                <input asp-for="Title" type="text" id="titleEvent" class="form-control">
+            </div>
+
+            <div class="md-form">
+                <textarea asp-for="Description" type="text" id="form75" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="md-form">
+                <input asp-for="UrlImage" type="text" id="titleEvent" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-dark" value="Send">Сохранить</button>
+    </div>
+</form>
