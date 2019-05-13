@@ -30,3 +30,30 @@
 Организация переходов и прав доступа между представлениями:  
 ![alt text](https://pp.userapi.com/c854228/v854228268/3c8e8/7tmlKvxybl8.jpg)
 
+# Оформление
+### Главная страница:  
+![alt text](https://pp.userapi.com/c846122/v846122357/203f36/6E1g2DrGASw.jpg)
+### Личный кабинет:   
+![alt text](https://pp.userapi.com/c846122/v846122357/203f58/e6KA43sdOKY.jpg)
+### Добавление аудитории:   
+![alt text](https://pp.userapi.com/c846122/v846122357/203f68/tDqfq6Ol2-E.jpg)
+### Составление занятости аудиторий:  
+![alt text](https://pp.userapi.com/c846122/v846122357/203f93/0ng1L7G1dAo.jpg)
+### Управление ролями пользователей:  
+![alt text](https://pp.userapi.com/c846122/v846122357/203fa3/5HFOwvJAd0A.jpg)
+### Публицация новости:  
+![alt text](https://pp.userapi.com/c846122/v846122357/203faa/TlLZnJ3bR2A.jpg)
+### Список постов:  
+![alt text](https://pp.userapi.com/c846122/v846122357/203fbb/gX0Vk9oV5s0.jpg)
+### Список постов:  
+![alt text](https://pp.userapi.com/c846122/v846122357/203fbb/gX0Vk9oV5s0.jpg)
+### Поиск свободной аудитории:  
+![alt text](https://pp.userapi.com/c846122/v846122357/203fd5/e7Qh1lqkvZQ.jpg)
+### Занять свободную аудиторию для проведения мероприятия:  
+![alt text](https://pp.userapi.com/c846122/v846122357/203fee/kIKK-u_JXQc.jpg)
+### Занятые аудитории (мероприятия):  
+![alt text](https://pp.userapi.com/c846122/v846122357/204010/52tyWNU8Lmw.jpg)
+### Новостная лента организации:  
+![alt text](https://pp.userapi.com/c846122/v846122357/20402a/k1x4e_-hQk4.jpg)
+
+
